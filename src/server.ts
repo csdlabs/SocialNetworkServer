@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const SpotifyWebApi = require('spotify-web-api-node');
-
+const lyricsFinder = require('lyrics-finder');
 
 const app = express();
 app.use(cors())
@@ -13,6 +13,11 @@ const port = process.env.PORT || 5000;
 
 
 console.log('hehe')
+
+// @ts-ignore
+app.get('/', function (req, res) {
+    res.send('hello world');
+})
 
 // @ts-ignore
 app.post('/refresh', (req, res) => {
@@ -65,9 +70,9 @@ app.post('/login', (req, res) => {
 
 })
 
-// app.get('/lyrics', async (req: any, res: any) => {
-//     const lyrics = await lyricsFinder(req.query.artist, req.query.track) || "No Lyrics found"
-//     res.json({lyrics})
-// })
+app.get('/lyrics', async (req: any, res: any) => {
+    const lyrics = await lyricsFinder(req.query.artist, req.query.track) || "No Lyrics found"
+    res.json({lyrics})
+})
 
 app.listen(port)
