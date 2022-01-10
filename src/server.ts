@@ -9,11 +9,10 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 5000;
 
 app.post('/refresh', (req: any, res: any) => {
     const refreshToken = req.body.refreshToken
-    console.log('hi')
     const spotifyApi = new SpotifyWebApi({
         redirectUri: process.env.REDIRECT_URI,
         clientId: process.env.CLIENT_ID,
