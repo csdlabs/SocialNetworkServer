@@ -9,6 +9,8 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
+const port = process.env.PORT || 3001;
+
 app.post('/refresh', (req: any, res: any) => {
     const refreshToken = req.body.refreshToken
     console.log('hi')
@@ -61,4 +63,4 @@ app.post('/login', (req: any, res: any) => {
 //     res.json({lyrics})
 // })
 
-app.listen(3001)
+app.listen(port)
