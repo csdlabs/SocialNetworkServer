@@ -14,10 +14,7 @@ const port = process.env.PORT || 5000;
 
 console.log('hehe')
 
-// @ts-ignore
-app.get('/', function (req, res) {
-    res.send('hello world');
-})
+
 
 // @ts-ignore
 app.post('/refresh', (req, res) => {
