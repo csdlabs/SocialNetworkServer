@@ -11,6 +11,9 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 const port = process.env.PORT || 5000;
 
+
+console.log('hehe')
+
 app.post('/refresh', (req: any, res: any) => {
     const refreshToken = req.body.refreshToken
     const spotifyApi = new SpotifyWebApi({

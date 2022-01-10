@@ -2,9 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server.ts",
+  "main": "server.ts",
   "scripts": {
-    "start": "src/server.ts",
+    "start": "node src/server.ts",
     "build": "tsc -p .",
     "dev": "nodemon src/server.ts"
   },
