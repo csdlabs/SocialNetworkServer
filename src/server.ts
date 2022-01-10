@@ -14,7 +14,8 @@ const port = process.env.PORT || 5000;
 
 console.log('hehe')
 
-app.post('/refresh', (req: any, res: any) => {
+// @ts-ignore
+app.post('/refresh', (req, res) => {
     const refreshToken = req.body.refreshToken
     const spotifyApi = new SpotifyWebApi({
         redirectUri: process.env.REDIRECT_URI,
@@ -23,8 +24,10 @@ app.post('/refresh', (req: any, res: any) => {
         refreshToken
     })
 
+
     spotifyApi.refreshAccessToken()
-        .then((data: any) =>
+        // @ts-ignore
+        .then((data) =>
             res.json({
                 accessToken: data.body.accessToken,
                 expiresIn: data.body.expiresIn,
@@ -34,8 +37,8 @@ app.post('/refresh', (req: any, res: any) => {
                 }))
 
 })
-
-app.post('/login', (req: any, res: any) => {
+// @ts-ignore
+app.post('/login', (req, res) => {
     const code = req.body.code
     console.log(code)
     const spotifyApi = new SpotifyWebApi({
@@ -47,14 +50,16 @@ app.post('/login', (req: any, res: any) => {
 
     spotifyApi
         .authorizationCodeGrant(code)
-        .then((data: any) => {
+        // @ts-ignore
+        .then((data) => {
             res.json({
                 accessToken: data.body.access_token,
                 refreshToken: data.body.refresh_token,
                 expiresIn: data.body.expires_in,
             })
         })
-        .catch((error: any) => {
+        // @ts-ignore
+        .catch((error) => {
             res.sendStatus(400)
         })
 
