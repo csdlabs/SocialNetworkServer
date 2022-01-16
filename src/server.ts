@@ -1,3 +1,4 @@
+// @ts-nocheck
 require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
@@ -11,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 
-app.post("/refresh", (req: any, res: any) => {
+app.post("/refresh", (req, res) => {
     const refreshToken = req.body.refreshToken
     const spotifyApi = new SpotifyWebApi({
         redirectUri: process.env.REDIRECT_URI,
@@ -22,7 +23,7 @@ app.post("/refresh", (req: any, res: any) => {
 
     spotifyApi
         .refreshAccessToken()
-        .then((data: any) => {
+        .then((data) => {
             res.json({
                 accessToken: data.body.accessToken,
                 expiresIn: data.body.expiresIn,
@@ -34,7 +35,7 @@ app.post("/refresh", (req: any, res: any) => {
         })
 })
 
-app.post("/login", (req: any, res: any) => {
+app.post("/login", (req, res) => {
     const code = req.body.code
     const spotifyApi = new SpotifyWebApi({
         redirectUri: process.env.REDIRECT_URI,
@@ -44,14 +45,14 @@ app.post("/login", (req: any, res: any) => {
 
     spotifyApi
         .authorizationCodeGrant(code)
-        .then((data: any) => {
+        .then((data) => {
             res.json({
                 accessToken: data.body.access_token,
                 refreshToken: data.body.refresh_token,
                 expiresIn: data.body.expires_in,
             })
         })
-        .catch((err: any) => {
+        .catch((err) => {
             res.sendStatus(400)
         })
 })
