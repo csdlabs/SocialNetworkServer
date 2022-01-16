@@ -9,7 +9,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-const port = process.env.PORT || 3001;
+
 
 app.post("/refresh", (req: any, res: any) => {
     const refreshToken = req.body.refreshToken
@@ -58,4 +58,7 @@ app.post("/login", (req: any, res: any) => {
 
 
 
-app.listen(port)
+app.listen(process.env.PORT || 3001, function(){
+    // @ts-ignore
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
