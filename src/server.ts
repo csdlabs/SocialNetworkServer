@@ -29,7 +29,7 @@ app.post("/refresh", (req, res) => {
                 expiresIn: data.body.expiresIn,
             })
         })
-        .catch((err: any) => {
+        .catch((err) => {
             console.log(err)
             res.sendStatus(400)
         })
